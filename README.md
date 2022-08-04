@@ -96,4 +96,4 @@ _Example:_ `@Injectable({ scope: Scope.REQUEST })`
 `nest g module <name>` - generate module (optional `--no-spec`)  
 `nest g class <folder>/<name>.model` - generate model (use classes as models we can hang different decorators on classes (for validation, DB, create extend classes)) (optional `--no-spec`)  
 `nest g controller <name>` - generate controller by path <name>/<name>.controller (optional `--no-spec`)  
-
+`nest g service <name>` - generate service 
