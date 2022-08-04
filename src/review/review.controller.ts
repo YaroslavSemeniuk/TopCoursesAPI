@@ -16,10 +16,12 @@ export class ReviewController {
 
 	@Delete(':id')
 	async delete(@Param(':id') id: string) {
+		// вот тут обрабатываем кейс, когда может вернуться или значение или его отсутствие (null)
 		const deletedDoc = await this.reviewService.delete(id);
 		if (!deletedDoc) {
 			throw new HttpException(REVIEW_NOT_FOUND, HttpStatus.NOT_FOUND);
 		}
+		// если в if не попали, то просто прошли дальше - то есть, просто вернули 200-й код с пустым body
 	}
 
 	@Get('byProduct/:productId')

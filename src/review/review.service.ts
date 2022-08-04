@@ -10,7 +10,7 @@ export class ReviewService {
 	constructor(
 		@InjectModel(ReviewModel)
 		private readonly reviewModel: ModelType<ReviewModel>,
-	) {}
+	) {} // подключили модель из базы в качестве provider-а и получили доступ к методам (CRUD) из ODM
 
 	async create(dto: CreateReviewDto): Promise<DocumentType<ReviewModel>> {
 		return this.reviewModel.create(dto);
