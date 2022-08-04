@@ -12,6 +12,6 @@ export class ProductModel {
   categories: string[];
   tags: string;
   characteristics: {
-      [key: string]: string;
+		[key: string]: string;
   };
 }

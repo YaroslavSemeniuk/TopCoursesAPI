@@ -17,4 +17,4 @@ const getMongoURI = (configService: ConfigService) =>
 const getMongoOptions = () => ({
   useNewUrlParser: true,
   useUnifiedTopology: true
-})
+});

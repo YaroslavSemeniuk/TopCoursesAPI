@@ -11,15 +11,15 @@ export class TopPageModel {
   secondCategory: string;
   title: string;
   category: string;
-  wu?: {
-    count: number;
-    juniorSalary: number;
-    middleSalary: number;
-    seniorSalary: number;
+  jinni?: {
+	count: number;
+	juniorSalary: number;
+	middleSalary: number;
+	seniorSalary: number;
   };
   advantages: {
-    title: string;
-    description: string;
+	title: string;
+	description: string;
   }[];
   seoText: string;
   tagsTitle: string;
