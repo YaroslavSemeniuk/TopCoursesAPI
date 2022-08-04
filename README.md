@@ -2,34 +2,15 @@
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
-
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Udemy course about NestJS
 
 ## Installation
 
 ```bash
-$ npm install
+$ n̶p̶m̶ ̶i̶n̶s̶t̶a̶l̶l̶
+$ npm i --legacy-peer-deps (have problem with dependencies)
 ```
 
 ## Running the app
@@ -37,10 +18,8 @@ $ npm install
 ```bash
 # development
 $ npm run start
-
 # watch mode
 $ npm run start:dev
-
 # production mode
 $ npm run start:prod
 ```
@@ -50,24 +29,71 @@ $ npm run start:prod
 ```bash
 # unit tests
 $ npm run test
-
 # e2e tests
 $ npm run test:e2e
-
 # test coverage
 $ npm run test:cov
 ```
 
-## Support
+## Architecture
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+Splitting application into modules:  
+![Splitting application into modules](images/readme/architecture.png)  
 
-## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+DTO (Data Transfer Objects) - classes for describe "body" data, which be transmitted in our methods
 
-## License
+## Controllers
 
-Nest is [MIT licensed](LICENSE).
+Controller input:  
+![Controller input](images/readme/controller_input.png)
+URL decoding:  
+![URL decoding](images/readme/url_decoding.png)
+
+**Argument decorators**  
+![Argument decorators](images/readme/argument_decorators.png)
+**Parsing decorators**  
+![Parsing decorators](images/readme/parsing_decorators.png)
+**Additional capabilities in controllers**  
+![Additional capabilities in controllers](images/readme/additional_capabilities.png)
+![Additional capabilities in controllers #2](images/readme/additional_capabilities2.png)
+Warning! @Res() - this is 'express' response type (not 'Node' type):
+![Res Import](images/readme/res.png)
+
+## Providers
+
+This is a class, or a factory, that allows you to use the nested model for dependency injection and embed into each other (in controllers, services and perform certain functions or share common data)
+![Providers schema](images/readme/providers_schema.png)
+
+**Simple service** - which inject providers (other classes)  
+`@Injectable` - indicates that it can be used as a provider and participate in the dependency tree
+![Simple service](images/readme/simple_service.png)
+![Simple service](images/readme/simple_use_case.png)  
+  
+**Provider types**  
+![Provider types](images/readme/provider_types.png)  
+  
+**useClass** - use class as provider  
+![useClass](images/readme/useClass.png)  
+**useFactory** - use factory (class that instantiates an object with some data)  
+![useFactory](images/readme/useFactory.png)
+**useValue** - inject value which we want to use in other classes  
+![useValue](images/readme/useValue.png)
+![useValue without class](images/readme/useValueWithoutClass.png)
+**useExisting** - rename an existing provider with a different alias  
+![useExisting](images/readme/useExisting.png)
+
+## Execution scopes
+![Scope Types](images/readme/scopeTypes.png)
+
+_Example:_ `@Injectable({ scope: Scope.REQUEST })`  
+**DEFAULT** **_(Singleton)_** - 1 provider(service) instance for all app  
+**REQUEST** - for every request create new service instance  
+**TRANSIENT** - each service that inject this provider take new provider instance
+
+## Nest CLI
+
+`nest g module <name>` - generate module (optional `--no-spec`)  
+`nest g class <folder>/<name>.model` - generate model (use classes as models we can hang different decorators on classes (for validation, DB, create extend classes)) (optional `--no-spec`)  
+`nest g controller <name>` - generate controller by path <name>/<name>.controller (optional `--no-spec`)  
+
