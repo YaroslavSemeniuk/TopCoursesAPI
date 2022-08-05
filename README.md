@@ -91,9 +91,27 @@ _Example:_ `@Injectable({ scope: Scope.REQUEST })`
 **REQUEST** - for every request create new service instance  
 **TRANSIENT** - each service that inject this provider take new provider instance
 
+## Types of tests
+
+![Scope Types](images/readme/testsTypes.png)
+
+**e2e Tests** - are targeted directly to the API & can also be done through the browser (from Frontend)
+![Scope Types](images/readme/e2eTools.png)
+**Unit Test**
+![Example of generating a class with tests for a service](images/readme/genClassForTestingService.png)
+Example of generating a class with tests for a service.
+
+**beforeEach** - will be executed before each test run (before each "it")  
+**beforeAll** - will be executed before all tests   
+**afterEach** - will be executed after each "it"  
+**afterAll** - will be executed after all tests  
+
 ## Nest CLI
 
 `nest g module <name>` - generate module (optional `--no-spec`)  
 `nest g class <folder>/<name>.model` - generate model (use classes as models we can hang different decorators on classes (for validation, DB, create extend classes)) (optional `--no-spec`)  
 `nest g controller <name>` - generate controller by path <name>/<name>.controller (optional `--no-spec`)  
 `nest g service <name>` - generate service 
+
+` npm run test:e2e` - run e2e tests  
+` npm run test` - run unit tests  

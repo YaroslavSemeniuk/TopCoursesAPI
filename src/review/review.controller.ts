@@ -15,7 +15,7 @@ export class ReviewController {
 	}
 
 	@Delete(':id')
-	async delete(@Param(':id') id: string) {
+	async delete(@Param('id') id: string) {
 		// вот тут обрабатываем кейс, когда может вернуться или значение или его отсутствие (null)
 		const deletedDoc = await this.reviewService.delete(id);
 		if (!deletedDoc) {
