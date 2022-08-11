@@ -106,6 +106,27 @@ Example of generating a class with tests for a service.
 **afterEach** - will be executed after each "it"  
 **afterAll** - will be executed after all tests  
 
+## Exception filters & Pipes
+Schema:
+![Exception filters & Pipes](images/readme/exceptionsPipes.png)
+
+**Pipes**
+![Built-in pipes](images/readme/built-inPipes.png)  
+**Pipes** - allows to validate or modify incoming data between request on API and receiving on our route. Nest already has some built-in pipes for data validation or conversion.  
+
+![Validation Pipe](images/readme/validationPipe.png)  
+**ValidationPipe** - (built in NestJS) internally uses the class-validator & class-transformer libraries. That allows you to convert an object into a class and then validate the properties of this class.  
+
+![Custom Pipe](images/readme/customPipe.png)  
+Example of **creating custom pipe**.  
+
+**Exceptions**  
+![Exceptions](images/readme/exceptions.png)  
+
+**Exceptions Filter** - allows to make changes between throwing an exception and returning it to the front in the form of json.  
+![Exceptions Filter](images/readme/exceptionsFilter.png)  
+For use it, need to set the @useFilters decorator in the rout. After this, all errors that will occur in this route will fall into our exception filter.  
+
 ## Nest CLI
 
 `nest g module <name>` - generate module (optional `--no-spec`)  
