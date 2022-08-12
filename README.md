@@ -136,3 +136,30 @@ For use it, need to set the @useFilters decorator in the rout. After this, all e
 
 ` npm run test:e2e` - run e2e tests  
 ` npm run test` - run unit tests  
+
+## Autocannon <a href="https://www.npmjs.com/package/autocannon?ref=hackernoon.com" target="blank"><img src="https://react-etc.net/files/2017-12/autocannon-logo.png" width="30" alt="Autocannon Logo" /></a>  
+
+`npm i autocannon`  
+
+Used for load testing, by sending a batch of requests to the specified route.
+
+`autocannon http://localhost:3000/api/review/byProduct/603c9d5ffa373014e6cd3ed2` - will test the speed of processing requests on a specific route (our app must first be launched)  
+
+
+## Clinic.js Utilities <a href="https://clinicjs.org/" target="blank"><img src="https://clinicjs.org/assets/images/clinic-social-media-image.png" width="50" alt="Clinic.js Logo" /></a>
+
+`npm i clinic`  
+
+**Clinic.js Doctor** - shows basic memory, event loop, cpu, event handler problems.  
+For using:
+1. Build project (create dist/main.js)  
+
+`npm run build`  
+
+3. Make sure the database is running  
+4. Run Clinic.js Doctor will analyze the load that it will create when sending requests using autocannon and build graphs based on this in folder _.clinic_. It independently raises the application instance.  
+
+`clinic doctor --on-port 'autocannon localhost:$PORT/api/review/byProduct/603c9d5ffa373014e6cd3ed2' -- node dist/main.js`
+
+**Clinic.js Bubbleprof** - shows in detail how the data moves, functions are called (used when detailed application analytics is needed)  
+**Clinic.js Flame** - build a graph showing the generated load by individual application modules  
