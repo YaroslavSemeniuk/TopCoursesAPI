@@ -1,8 +1,11 @@
 import { compare } from 'bcryptjs';
 import { JwtService } from '@nestjs/jwt';
+import { UserModel } from '../user/user.model';
 import { UserService } from '../user/user.service';
 import { USER_NOT_FOUND, WRONG_PASSWORD } from './auth.constants';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
+
+export type JWTPayload = Pick<UserModel, 'email'>;
 
 @Injectable()
 export class AuthService {
@@ -25,7 +28,7 @@ export class AuthService {
 	}
 
 	async login(email: string) {
-		const payload = { email };
+		const payload: JWTPayload = { email };
 		return { access_token: await this.jwtService.signAsync(payload) };
 	}
 }

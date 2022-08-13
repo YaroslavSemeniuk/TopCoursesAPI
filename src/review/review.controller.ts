@@ -7,11 +7,13 @@ import {
 	HttpStatus,
 	Param,
 	Post,
+	UseGuards,
 	UsePipes,
 	ValidationPipe,
 } from '@nestjs/common';
 import { ReviewService } from './review.service';
 import { REVIEW_NOT_FOUND } from './review.constants';
+import { JwtAuthGuard } from '../auth/guards/jwt.guard';
 import { CreateReviewDto } from './dto/create-review.dto';
 
 @Controller('review')
@@ -24,6 +26,7 @@ export class ReviewController {
 		return this.reviewService.create(dto);
 	}
 
+	@UseGuards(JwtAuthGuard)
 	@Delete(':id')
 	async delete(@Param('id') id: string) {
 		// вот тут обрабатываем кейс, когда может вернуться или значение или его отсутствие (null)
