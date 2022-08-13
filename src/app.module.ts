@@ -8,6 +8,7 @@ import { ReviewModule } from './review/review.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypegooseModule } from 'nestjs-typegoose';
 import { getMongoConfig } from './config/mongo.config';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -20,7 +21,7 @@ import { getMongoConfig } from './config/mongo.config';
 		imports: [ConfigModule], // import the module that contains the required service (provider)
 		inject: [ConfigService], // inject the dependency into factory from the imported module (line above)
 		useFactory: getMongoConfig  // setup what will the factory look like
-	})
+	}), UserModule
   ],
   controllers: [AppController],
   providers: [AppService],
