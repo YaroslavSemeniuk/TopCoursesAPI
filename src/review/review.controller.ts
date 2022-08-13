@@ -15,7 +15,6 @@ import { ReviewService } from './review.service';
 import { REVIEW_NOT_FOUND } from './review.constants';
 import { JwtAuthGuard } from '../auth/guards/jwt.guard';
 import { CreateReviewDto } from './dto/create-review.dto';
-import { UserEmail } from '../decorators/user-email.decorator';
 
 @Controller('review')
 export class ReviewController {
@@ -38,12 +37,8 @@ export class ReviewController {
 		// если в if не попали, то просто прошли дальше - то есть, просто вернули 200-й код с пустым body
 	}
 
-	@UseGuards(JwtAuthGuard)
 	@Get('byProduct/:productId')
-	async getByProduct(
-		@Param('productId') productId: string,
-		@UserEmail() email: string,
-	) {
+	async getByProduct(@Param('productId') productId: string) {
 		return this.reviewService.findByProductId(productId);
 	}
 }
