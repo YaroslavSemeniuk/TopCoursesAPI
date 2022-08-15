@@ -15,6 +15,7 @@ import { ReviewService } from './review.service';
 import { REVIEW_NOT_FOUND } from './review.constants';
 import { JwtAuthGuard } from '../auth/guards/jwt.guard';
 import { CreateReviewDto } from './dto/create-review.dto';
+import { IdValidationPipe } from '../pipes/id-validation.pipe';
 
 @Controller('review')
 export class ReviewController {
@@ -28,17 +29,16 @@ export class ReviewController {
 
 	@UseGuards(JwtAuthGuard)
 	@Delete(':id')
-	async delete(@Param('id') id: string) {
-		// вот тут обрабатываем кейс, когда может вернуться или значение или его отсутствие (null)
+	async delete(@Param('id', IdValidationPipe) id: string) {
 		const deletedDoc = await this.reviewService.delete(id);
 		if (!deletedDoc) {
 			throw new HttpException(REVIEW_NOT_FOUND, HttpStatus.NOT_FOUND);
 		}
-		// если в if не попали, то просто прошли дальше - то есть, просто вернули 200-й код с пустым body
+		// just return the 200th status code
 	}
 
 	@Get('byProduct/:productId')
-	async getByProduct(@Param('productId') productId: string) {
+	async getByProduct(@Param('productId', IdValidationPipe) productId: string) {
 		return this.reviewService.findByProductId(productId);
 	}
 }
