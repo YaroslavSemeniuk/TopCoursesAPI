@@ -47,6 +47,19 @@ export class ProductService {
 					$addFields: {
 						reviewCount: { $size: '$reviews' },
 						reviewAvg: { $avg: '$reviews.rating' },
+						// Overwrite the "reviews" field, according to the logic of the function we created.
+						// Namely, changing the standard sorting from oldest to newest, in reverse order.
+						// The functionality of creating your own functions is available since Mongo 4.4
+						reviews: {
+							$function: {
+								body: `function (reviews) {
+									reviews.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+									return reviews;
+								}`,
+								args: ['$reviews'],
+								lang: 'js'
+							}
+						}
 					},
 				},
 			])
