@@ -4,7 +4,16 @@
 
 ## Description
 
-Udemy course about NestJS
+Created backend application for the educational platform.  
+The site allows you to publish and search for courses on various topics, taking into account reviews, ratings, etc.
+
+Used technologies:
+* TypeScript
+* Nest.js Framework
+* MongoDB
+* Typegoose
+* Clinic.js
+* Autocannon
 
 ## Installation
 
