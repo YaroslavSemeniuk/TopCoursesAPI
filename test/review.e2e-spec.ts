@@ -35,7 +35,9 @@ describe('AppController (e2e)', () => {
 		app = moduleFixture.createNestApplication();
 		await app.init();
 
-		const { body } = await request(app.getHttpServer()).post('/auth/login').send(loginDto);
+		const { body } = await request(app.getHttpServer())
+			.post('/auth/login')
+			.send(loginDto);
 		access_token = body.access_token;
 	});
 
@@ -89,7 +91,5 @@ describe('AppController (e2e)', () => {
 			.expect(404, { statusCode: 404, message: REVIEW_NOT_FOUND });
 	});
 
-	afterAll(() => {
-		disconnect();
-	});
+	afterAll(() => disconnect());
 });
