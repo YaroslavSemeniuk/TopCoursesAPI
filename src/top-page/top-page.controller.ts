@@ -49,6 +49,12 @@ export class TopPageController {
 		return topPage;
 	}
 
+	@HttpCode(200)
+	@Get('textSearch/:text')
+	async textSearch(@Param('text') text: string) {
+		return this.topPageService.findByText(text);
+	}
+
 	@UseGuards(JwtAuthGuard)
 	@Delete(':id')
 	async delete(@Param('id', IdValidationPipe) id: string) {
