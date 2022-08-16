@@ -31,12 +31,18 @@ export class TopPageService {
 		return this.topPageModel.findByIdAndUpdate(id, dto, { new: true }).exec();
 	}
 
-	async findByCategory(
-		firstCategory: TopLevelCategory,
-	): Promise<Pick<TopPageModel, 'alias' | 'secondCategory' | 'title'>> {
+	async findByCategory(firstCategory: TopLevelCategory) {
 		return this.topPageModel
-			.find({ firstCategory }, { alias: 1, secondCategory: 1, title: 1 })
-			.lean();
+			.aggregate([
+				{ $match: { firstCategory } },
+				{
+					$group: {
+						_id: { secondCategory: '$secondCategory' },
+						pages: { $push: { alias: '$alias', title: '$title' } },
+					},
+				},
+			])
+			.exec();
 	}
 
 	async findByAlias(alias: string) {
