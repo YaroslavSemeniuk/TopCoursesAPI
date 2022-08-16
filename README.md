@@ -20,6 +20,7 @@ Used technologies:
 ```bash
 $ n̶p̶m̶ ̶i̶n̶s̶t̶a̶l̶l̶
 $ npm i --legacy-peer-deps (have problem with dependencies)
+$ docker build -t top-api . (build image after Dockerfile creation)
 ```
 
 ## Running the app
