@@ -137,6 +137,20 @@ Example of **creating custom pipe**.
 ![Exceptions Filter](images/readme/exceptionsFilter.png)  
 For use it, need to set the @useFilters decorator in the rout. After this, all errors that will occur in this route will fall into our exception filter.  
 
+## Work with files
+![Principle of operation](images/readme/operating_principle.png)
+Benefits of this approach:  
+* Upload any number of files one by one
+* Less risk if sending all data fails
+* Even if a failure occurs, we can restore the history if we provide additional information for what this image is for
+
+## Serve static
+The essence of this concept is that we create the ability to upload files (fotos / .html / .css ...) from the server by their name.  
+For example, there is a request `http//:domain/dog123` and we are looking for a file on the server with the name `dog123` in a dedicated folder, which we have included as a static.  
+It is most correct to create a route on the back that will allow you to save files to this folder. And already implement the mechanism for uploading files with nginx. This will be the fastest and most efficient way to serve static content from the server.  
+
+If we want to serve images faster, then we need to integrate with CDN providers and, when uploading images, give them via API and receive a public link, which is already stored in the database.  
+
 ## Nest CLI
 
 `nest g module <name>` - generate module (optional `--no-spec`)  

@@ -9,6 +9,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypegooseModule } from 'nestjs-typegoose';
 import { getMongoConfig } from './config/mongo.config';
 import { UserModule } from './user/user.module';
+import { FilesModule } from './files/files.module';
 
 @Module({
   imports: [
@@ -16,12 +17,14 @@ import { UserModule } from './user/user.module';
 	TopPageModule,
 	ProductModule,
 	ReviewModule,
+  	UserModule,
+  	FilesModule,
 	ConfigModule.forRoot(), // module for working with env files
 	TypegooseModule.forRootAsync({
 		imports: [ConfigModule], // import the module that contains the required service (provider)
 		inject: [ConfigService], // inject the dependency into factory from the imported module (line above)
 		useFactory: getMongoConfig  // setup what will the factory look like
-	}), UserModule
+	}),
   ],
   controllers: [AppController],
   providers: [AppService],
