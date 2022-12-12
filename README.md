@@ -145,11 +145,17 @@ Benefits of this approach:
 * Even if a failure occurs, we can restore the history if we provide additional information for what this image is for
 
 ## Serve static
-The essence of this concept is that we create the ability to upload files (fotos / .html / .css ...) from the server by their name.  
+The essence of this concept is that we create the ability to upload files `(fotos / .html / .css ...)` from the server by their name.  
 For example, there is a request `http//:domain/dog123` and we are looking for a file on the server with the name `dog123` in a dedicated folder, which we have included as a static.  
 It is most correct to create a route on the back that will allow you to save files to this folder. And already implement the mechanism for uploading files with nginx. This will be the fastest and most efficient way to serve static content from the server.  
 
 If we want to serve images faster, then we need to integrate with CDN providers and, when uploading images, give them via API and receive a public link, which is already stored in the database.  
+
+## Sitemap
+It's actually a sitemap. Available at `/sitemap.xml`  
+It is needed because the search engines are guided by it in order to index the pages of our site and not skip any.  
+In fact, this is an instruction that allows you to tell search engines how to bypass our site, with what frequency, what priority and for what links.
+SEO will require it so that search engines can index it.  
 
 ## Nest CLI
 

@@ -10,6 +10,7 @@ import { TypegooseModule } from 'nestjs-typegoose';
 import { getMongoConfig } from './config/mongo.config';
 import { UserModule } from './user/user.module';
 import { FilesModule } from './files/files.module';
+import { SitemapModule } from './sitemap/sitemap.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { FilesModule } from './files/files.module';
 	ReviewModule,
   	UserModule,
   	FilesModule,
+  	SitemapModule,
 	ConfigModule.forRoot(), // module for working with env files
 	TypegooseModule.forRootAsync({
 		imports: [ConfigModule], // import the module that contains the required service (provider)
