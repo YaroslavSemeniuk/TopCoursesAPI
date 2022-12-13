@@ -11,6 +11,8 @@ import { getMongoConfig } from './config/mongo.config';
 import { UserModule } from './user/user.module';
 import { FilesModule } from './files/files.module';
 import { SitemapModule } from './sitemap/sitemap.module';
+import { TelegramModule } from './telegram/telegram.module';
+import { getTelegramConfig } from './config/telegram.config';
 
 @Module({
   imports: [
@@ -25,7 +27,12 @@ import { SitemapModule } from './sitemap/sitemap.module';
 	TypegooseModule.forRootAsync({
 		imports: [ConfigModule], // import the module that contains the required service (provider)
 		inject: [ConfigService], // inject the dependency into factory from the imported module (line above)
-		useFactory: getMongoConfig  // setup what will the factory look like
+		useFactory: getMongoConfig  // setup what will the factory look execute
+	}),
+  	TelegramModule.forRootAsync({
+		imports: [ConfigModule],
+		inject: [ConfigService],
+		useFactory: getTelegramConfig
 	}),
   ],
   controllers: [AppController],
